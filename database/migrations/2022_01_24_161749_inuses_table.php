@@ -14,7 +14,6 @@ class InusesTable extends Migration
     public function up()
     {
         Schema::create('inuses', function (Blueprint $table) {
-            $table->id();
             $table->integer('thing_id');
             $table->integer('place_id');
             $table->integer('user_id');

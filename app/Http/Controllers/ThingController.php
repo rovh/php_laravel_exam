@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Thing;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class ThingController extends Controller
 {
@@ -78,7 +79,18 @@ class ThingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $name = $request->get('name');
+        $value = $request->get('new');
+
+        $findObject = Thing::where('id', '=', $id)->update([$name => $value]);
+        
+        if ($findObject == FALSE){
+            return 'Not found';
+        }
+        else{
+            return 'Was updated';
+        }
+
     }
 
     /**
@@ -87,8 +99,16 @@ class ThingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $findObject = Thing::where('id', '=', $id)->delete();
+  
+        if ($findObject == FALSE){
+            return 'Not found';
+        }
+        else{
+            return 'Was deleted';
+        }
+
     }
 }

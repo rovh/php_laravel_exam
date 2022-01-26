@@ -4,6 +4,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ThingController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\InuseController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,21 +18,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/things', [MainController::class, 'things']);
 Route::post('/things/add', [ThingController::class, 'create']);
+
+Route::put('/things/upd/{id}', [ThingController::class, 'update']);
+
+Route::delete('/things/del/{id}', [ThingController::class, 'delete']);
+
+Route::get('/things', [MainController::class, 'things']);
 Route::get('/things/{thing}', [MainController::class, 'thing']);
 
-Route::get('/places', [MainController::class, 'places']);
+
+
 Route::post('/places/add', [PlaceController::class, 'create']);
+
+Route::put('/places/upd/{id}', [PlaceController::class, 'update']);
+
+Route::delete('/places/del/{id}', [PlaceController::class, 'delete']);
+
+Route::get('/places', [MainController::class, 'places']);
 Route::get('/places/{place}', [MainController::class, 'place']);
 
+
+
+Route::post('/inuses/add', [InuseController::class, 'create']);
+Route::delete('/inuses/del/{id}', [InuseController::class, 'delete']);
 Route::get('/inuses', [MainController::class, 'inuses']);
-Route::get('/inuses/add', [InuseController::class, 'create']);
 Route::get('/inuses/{inuse}', [MainController::class, 'inuse']);
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Auth::routes();
 

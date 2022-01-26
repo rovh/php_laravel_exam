@@ -84,8 +84,8 @@ class InuseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        // DB::table('users')->where('id', '=', '54')->delete();
     }
 }
